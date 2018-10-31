@@ -17,6 +17,10 @@ import android.widget.EditText;
 import com.example.mihailkalchev.criminalintent.R;
 import com.example.mihailkalchev.criminalintent.models.Crime;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+
 public class CrimeFragment extends Fragment {
 
     private Crime mCrime;
@@ -56,8 +60,10 @@ public class CrimeFragment extends Fragment {
             }
         });
 
+        String format = "EEEE, MMM d, yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.getDefault());
         dateButton = v.findViewById(R.id.crime_date);
-        dateButton.setText(mCrime.getDate().toString());
+        dateButton.setText(sdf.format(mCrime.getDate()));
         dateButton.setEnabled(false);
 
         solvedCheckBox = v.findViewById(R.id.crime_solved);
